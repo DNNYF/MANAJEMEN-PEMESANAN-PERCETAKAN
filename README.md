@@ -43,7 +43,7 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
 - **[Lendio](https://lendio.com)**
 
-## Kelompok
+## Anggota Kelompok
 
 - Denny Firmansyah Suwardi  (2203067)
 - Gilang Kurniawansyah (2203071)
