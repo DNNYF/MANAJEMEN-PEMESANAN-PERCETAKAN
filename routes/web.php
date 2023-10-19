@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+
+Route::get('/payment', function () {
+    return view('payment');
+});
+
+Route::get('/pemesanan', function () {
+    return view('pemesanan');
+});
+
+
