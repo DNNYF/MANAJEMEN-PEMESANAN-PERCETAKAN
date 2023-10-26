@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
 });
 
@@ -26,7 +26,7 @@ Route::get('/pemesanan', function () {
     return view('pemesanan');
 });
 
-Route::get('/market', function () {
+Route::get('/', function () {
     return view('market');
 });
 Route::get('/register', function () {

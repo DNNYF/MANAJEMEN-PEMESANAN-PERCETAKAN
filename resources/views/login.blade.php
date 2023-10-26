@@ -31,7 +31,7 @@
     </form>
     <p class="text-gray-600 mt-4 text-center">
       Belum punya akun?
-      <a href="#" class="text-yellow-700 hover:underline">Daftar Sekarang</a>
+      <a href="/register" class="text-yellow-700 hover:underline">Daftar Sekarang</a>
     </p>
   </div>
 </body>

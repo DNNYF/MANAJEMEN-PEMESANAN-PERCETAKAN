@@ -51,7 +51,7 @@
       </form>
       <p class="text-gray-600 mt-4 text-center">
         Sudah punya akun?
-        <a href="#" class="text-yellow-800 hover:underline">Login Sekarang</a>
+        <a href="/login" class="text-yellow-800 hover:underline">Login Sekarang</a>
       </p>
     </div>
   </body>
