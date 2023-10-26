@@ -32,6 +32,21 @@ Route::get('/market', function () {
 Route::get('/register', function () {
     return view('register');
 });
+Route::get('/chat', function () {
+    return view('chat');
+});
+Route::get('/daftarpesanan', function () {
+    return view('daftarpesanan');
+});
+Route::get('/riwayatpemesanan', function () {
+    return view('riwayatpemesanan');
+});
+Route::get('/tambahadmin', function () {
+    return view('tambahadmin');
+});
+Route::get('/tambahproduk', function () {
+    return view('tambahproduk');
+});
 
 
 
