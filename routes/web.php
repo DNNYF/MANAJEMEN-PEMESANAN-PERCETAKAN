@@ -29,6 +29,9 @@ Route::get('/pemesanan', function () {
 Route::get('/market', function () {
     return view('market');
 });
+Route::get('/register', function () {
+    return view('register');
+});
 
 
 
