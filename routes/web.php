@@ -47,6 +47,6 @@ Route::get('/tambahadmin', function () {
 Route::get('/tambahproduk', function () {
     return view('tambahproduk');
 });
-
-
-
+Route::get('/pesananClient', function () {
+    return view('pesananClient');
+});
