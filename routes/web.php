@@ -26,4 +26,9 @@ Route::get('/pemesanan', function () {
     return view('pemesanan');
 });
 
+Route::get('/market', function () {
+    return view('market');
+});
+
+
 
