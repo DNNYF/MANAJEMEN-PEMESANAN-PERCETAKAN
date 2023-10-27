@@ -50,3 +50,6 @@ Route::get('/tambahproduk', function () {
 Route::get('/pesananClient', function () {
     return view('pesananClient');
 });
+Route::get('/polo', function () {
+    return view('polo');
+});

@@ -62,5 +62,6 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "polotno/polotno": "^1.0.0"
 }
