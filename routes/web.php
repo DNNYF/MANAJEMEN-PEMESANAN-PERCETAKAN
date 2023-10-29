@@ -53,3 +53,6 @@ Route::get('/pesananClient', function () {
 Route::get('/polo', function () {
     return view('polo');
 });
+Route::get('/polotno', function () {
+    return view('polotno');
+});
