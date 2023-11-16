@@ -25,7 +25,7 @@
         <a href="#" class="text-yellow-800 hover:underline">Lupa Password?</a>
       </div>
       <button type="submit" class="bg-yellow-800 hover:bg-yellow-900 text-white rounded-lg py-2 px-4 w-full">
-        <a href="/daftarpesanan">
+        <a href="https://dnnyf.github.io/polo.github.io/">
         Login
       </a>
       </button>
