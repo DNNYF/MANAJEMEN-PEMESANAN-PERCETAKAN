@@ -113,7 +113,7 @@
                     <p class="text-2xl font-semibold text-gray-900"></p>
                 </div>
             </div>
-            <button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
+            <a href="/pesananClient"><button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button></a>
         </div>
     </div>
     <script>
