@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\product_controller;
+use App\Http\Controllers\productController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProductManagementController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,15 +47,21 @@ Route::get('/riwayatpemesanan', function () {
 Route::get('/tambahadmin', function () {
     return view('tambahadmin');
 });
-Route::get('/tambahproduk', function () {
-    return view('tambahproduk');
-});
+// Route::get('/products', function () {
+//     return view('product.index');
+// });
 Route::get('/pesananClient', function () {
     return view('pesananClient');
 });
-Route::get('/polo', function () {
-    return view('polo');
+Route::get('/poloroute', function () {
+    return view('poloroute');
 });
-Route::get('/polotno', function () {
-    return view('polotno');
+Route::get('/konfirmasi', function () {
+    return view('konfirmasipesanan');
 });
+
+
+Route::resource('product', productController::class);
+
+
+
