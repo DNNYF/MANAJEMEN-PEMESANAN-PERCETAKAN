@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\product_controller;
-use App\Http\Controllers\productController;
+
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\productController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductManagementController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,9 +48,7 @@ Route::get('/riwayatpemesanan', function () {
 Route::get('/tambahadmin', function () {
     return view('tambahadmin');
 });
-// Route::get('/products', function () {
-//     return view('product.index');
-// });
+
 Route::get('/pesananClient', function () {
     return view('pesananClient');
 });
@@ -62,6 +61,13 @@ Route::get('/konfirmasi', function () {
 
 
 Route::resource('product', productController::class);
+
+
+
+
+
+
+
 
 
 
