@@ -20,7 +20,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "flowbite": "^2.0.0",
+        "flowbite": "^2.1.1",
         "parcel": "^2.10.1",
         "polotno": "^2.0.8",
         "react": "^18.2.0",

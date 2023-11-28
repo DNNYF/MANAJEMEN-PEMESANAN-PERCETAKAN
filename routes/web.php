@@ -1,5 +1,9 @@
 <?php
 
+
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\productController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,15 +48,26 @@ Route::get('/riwayatpemesanan', function () {
 Route::get('/tambahadmin', function () {
     return view('tambahadmin');
 });
-Route::get('/tambahproduk', function () {
-    return view('tambahproduk');
-});
+
 Route::get('/pesananClient', function () {
     return view('pesananClient');
 });
-Route::get('/polo', function () {
-    return view('polo');
+Route::get('/poloroute', function () {
+    return view('poloroute');
 });
-Route::get('/polotno', function () {
-    return view('polotno');
+Route::get('/konfirmasi', function () {
+    return view('konfirmasipesanan');
 });
+
+
+Route::resource('product', productController::class);
+
+
+
+
+
+
+
+
+
+
