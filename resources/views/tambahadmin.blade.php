@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.main')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aplikasi Manajemen Percetakan</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
-    <title>Document</title>
-</head>
+@section('title', 'Tambah Admin')
 
-<body>
-
-    @extends('layout.nav')
-    @extends('layout.sidebar')
+@section('main_content')
+@extends('layout.nav')
+@include('layout.sidebar')
 
     <div class="mt-20 mx-4">
         <div class=" sm:ml-64 border border-gray-200 shadow rounded-lg">
@@ -133,6 +120,5 @@
             </table>
         </div>
     </div>
-</body>
 
-</html>
+@endsection
