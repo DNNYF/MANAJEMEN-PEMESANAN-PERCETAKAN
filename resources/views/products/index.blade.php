@@ -131,9 +131,11 @@
                             <td class="px-6 py-3">
                                 {{ $item->jenis }}
                             </td>
-                            <td class="px-6 py-3">
-                                <img class="object-scale-down h-20 w-20" src="{{ Storage::url('public/imageApp/' . $item->foto) }}" alt="">
-                            </td>
+                                <td class="px-6 py-3">
+                                    <a href="{{ Storage::url('public/imageApp/' . $item->foto) }}">
+                                        <img class="object-scale-down h-10 w-10" src="{{ Storage::url('public/imageApp/' . $item->foto) }}" alt="">
+                                    </a>
+                                </td>
                             <td class="px-6 py-3">
                                 {{ $item->harga }}
                             </td>
@@ -186,5 +188,6 @@
     </table>
     </div>
 </div>
+
 
 @endsection
