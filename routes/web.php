@@ -4,6 +4,8 @@
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\tambahadmin;
+use App\Models\adminModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,9 +47,6 @@ Route::get('/daftarpesanan', function () {
 Route::get('/riwayatpemesanan', function () {
     return view('riwayatpemesanan');
 });
-Route::get('/tambahadmin', function () {
-    return view('tambahadmin');
-});
 
 Route::get('/pesananClient', function () {
     return view('pesananClient');
@@ -62,6 +61,7 @@ Route::get('/konfirmasi', function () {
 
 Route::resource('product', productController::class);
 
+Route::resource('tambahadmin', tambahadmin::class);
 
 
 
