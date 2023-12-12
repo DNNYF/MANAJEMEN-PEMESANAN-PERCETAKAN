@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\logincontroller;
 use App\Http\Controllers\Registercontroller;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\tambahadmin;
+use App\Models\adminModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,9 +49,6 @@ Route::get('/daftarpesanan', function () {
 Route::get('/riwayatpemesanan', function () {
     return view('riwayatpemesanan');
 });
-Route::get('/tambahadmin', function () {
-    return view('tambahadmin');
-});
 
 Route::get('/pesananClient', function () {
     return view('pesananClient');
@@ -67,6 +66,7 @@ Route::get('/login',[logincontroller::class,'index']);
 Route::get('/register',[Registercontroller::class,'index']);
 Route::post('/login/login',[logincontroller::class,'login']);
 
+Route::resource('tambahadmin', tambahadmin::class);
 Auth::routes();
 
 Route::get('/home', function () {

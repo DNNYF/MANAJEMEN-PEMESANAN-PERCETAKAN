@@ -9,15 +9,35 @@
     <div class="mt-20 mx-4">
         <div class=" sm:ml-64 border border-gray-200 shadow rounded-lg">
             <div class="w-full  bg-white p-8 rounded-lg  w-96">
+                @if (Session::has('success'))
+                <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                    role="alert">
+                    <span class="font-medium">Info!</span> {{ Session::get('success') }}
+                </div>
+                @else
+    
+                @endif
+                @if ($errors->any())
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <span class="font-medium">Kesalahan</span>
+                    <ul class="list-disc list-inside mt-2">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <h2 class="text-2xl font-semibold mb-4 text-center">Tambah Admin</h2>
-                <form>
+                <form action="{{ route('tambahadmin.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-4">
                         <label for="username" class="block text-gray-600">Nama</label>
-                        <input type="text" id="username" name="username" class="w-full border border-gray-300 rounded-lg py-2 px-4" required />
+                        <input type="text" id="nama_admin" name="nama_admin" class="w-full border border-gray-300 rounded-lg py-2 px-4" required />
                     </div>
                     <div class="mb-4">
                         <label for="tlp" class="block text-gray-600">Nomor HP</label>
-                        <input type="tlp" id="tlp" name="tlp" class="w-full border border-gray-300 rounded-lg py-2 px-4" required />
+                        <input type="text" id="no_hp" name="no_hp" class="w-full border border-gray-300 rounded-lg py-2 px-4" required />
                     </div>
                     <div class="mb-4">
                         <label for="email" class="block text-gray-600">Email</label>
@@ -27,15 +47,16 @@
                         <label for="password" class="block text-gray-600">Password</label>
                         <input type="password" id="password" name="password" class="w-full border border-gray-300 rounded-lg py-2 px-4" required />
                     </div>
-                </form>
                 <div class="mb-4">
                     <label for="password" class="block text-gray-600">Masukan Ulang Password</label>
-                    <input type="password" name="password" class="w-full border border-gray-300 rounded-lg py-2 px-4" required />
+                    <input type="password" name="masukan_ulang_password" class="w-full border border-gray-300 rounded-lg py-2 px-4" required />
                 </div>
 
-                <button type="button" class="mt-5 w-full hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+                <button type="submit" class="mt-5 w-full hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
                     Submit
                 </button>
+
+            </form>
             </div>
         </div>
     </div>
