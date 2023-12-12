@@ -3,6 +3,8 @@
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\logincontroller;
+use App\Http\Controllers\Registercontroller;
 use App\Http\Controllers\productController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,13 +63,12 @@ Route::get('/konfirmasi', function () {
 
 
 Route::resource('product', productController::class);
+Route::get('/login',[logincontroller::class,'index']);
+Route::get('/register',[Registercontroller::class,'index']);
+Route::post('/login/login',[logincontroller::class,'login']);
 
+Auth::routes();
 
-
-
-
-
-
-
-
-
+Route::get('/home', function () {
+    return redirect('/');
+});

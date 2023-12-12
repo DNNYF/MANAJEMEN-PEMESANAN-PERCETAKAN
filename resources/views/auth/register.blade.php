@@ -54,7 +54,8 @@
         
         <button
           type="submit"
-          class="bg-yellow-800 hover:bg-yellow-900 text-white rounded-lg py-2 px-4 w-full">
+          class="bg-yellow-800 hover:bg-yellow-900 text-white rounded-lg py-2 px-4 w-full"
+          a href="/market">
           Register
         </button>
       </form>
