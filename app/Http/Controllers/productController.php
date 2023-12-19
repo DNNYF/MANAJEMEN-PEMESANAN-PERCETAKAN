@@ -137,12 +137,15 @@ class productController extends Controller
         return redirect()->route('product.index')->with('success', 'Data Produk berhasil diupdate');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         productModel::where('id_product', $id)->delete();
         return redirect()->route('product.index')->with('success', 'Sukses Menghapus Data');
+    }
+
+    public function market()
+    {
+        $marketData = productModel::orderby('nama_product', 'asc')->paginate(10);
+        return view('market')->with('marketData', $marketData);
     }
 }

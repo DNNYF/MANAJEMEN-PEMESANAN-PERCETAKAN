@@ -15,6 +15,12 @@
             </div>
             <div class="flex items-center">
                 <div class="flex items-center ml-3">
+                   <?= $title = '' ?>
+                    @if ($title == 1)
+                    <a href="/login">
+                        <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Login</button>
+                    </a>
+                    @else
                     <div>
                         <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
@@ -44,6 +50,8 @@
                             </li>
                         </ul>
                     </div>
+                    @endif
+                    
                 </div>
             </div>
         </div>

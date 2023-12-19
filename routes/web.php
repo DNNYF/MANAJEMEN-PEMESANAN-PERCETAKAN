@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\logincontroller;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Registercontroller;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\tambahadmin;
@@ -34,9 +35,6 @@ Route::get('/pemesanan', function () {
     return view('pemesanan');
 });
 
-Route::get('/', function () {
-    return view('market');
-});
 Route::get('/register', function () {
     return view('register');
 });
@@ -53,18 +51,20 @@ Route::get('/riwayatpemesanan', function () {
 Route::get('/pesananClient', function () {
     return view('pesananClient');
 });
-Route::get('/poloroute', function () {
-    return view('poloroute');
+Route::get('/polotno', function () {
+    return view('polotno');
 });
 Route::get('/konfirmasi', function () {
     return view('konfirmasipesanan');
 });
 
-
+Route::get('/payment',[OrderController::class, 'index']);
+Route::post('/checkout',[OrderController::class, 'checkout']);
 Route::resource('product', productController::class);
+Route::get('/', [ProductController::class, 'market'])->name('market');
 Route::get('/login',[logincontroller::class,'index']);
-Route::get('/register',[Registercontroller::class,'index']);
 Route::post('/login/login',[logincontroller::class,'login']);
+Route::get('/register',[Registercontroller::class,'index']);
 
 Route::resource('tambahadmin', tambahadmin::class);
 Auth::routes();
