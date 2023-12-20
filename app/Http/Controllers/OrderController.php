@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Order;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\productController;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,7 +12,7 @@ class OrderController extends Controller
     }
 
     public function checkout(Request $request){
-       
-       $request ->request->add(['total' ->$request->qyt * ]);
+        $order = Order::create($request->all());
+
     }
 }

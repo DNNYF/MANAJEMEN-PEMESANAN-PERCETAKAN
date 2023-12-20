@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <form action="/checkout" method="POST">
+    <form action="{{ url('/checkout') }}" method="POST">
         @csrf
     <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
             <div class="px-4 pt-8">
@@ -58,19 +58,19 @@
                 <li class="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
                     <div class="shrink-0">
                         <img class="h-24 w-24 max-w-full rounded-lg object-cover"
-                            src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//83/MTA-4622410/jing-s_vardera_-_mug_-_gelas_kopi_-_gelas_-_putih_full01_fxacdnho.jpg"
+                            src="{{ Storage::url('public/imageApp/' . $product->foto) }}"
                             alt="" />
                     </div>
                     <div class="relative flex flex-1 flex-col justify-between">
                         <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
                             <div class="pr-8 sm:pr-5">
-                                <p class="text-base font-semibold text-gray-900">Desain Gelas</p>
-                                <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">Rp. 15.000</p>
+                                <p class="text-base font-semibold text-gray-900">{{ $product->nama_product }}</p>
+                                <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">Rp. {{ number_format($product->harga, 0, ',', '.') }} / Item   </p>
                             </div>
                             <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
                                 <div class="sm:order-1">
                                     <div class="mx-auto flex h-8 items-stretch text-gray-600">
-                                        <input type="number" name="qyt"
+                                        <input id="qytInput" type="number" name="qyt"
                                             class="border border-gray-500 rounded w-full text-center text-gray-900 justify-center bg-gray-100  text-xs uppercase "
                                             required min="1" placeholder="QYT" required>
                                     </div>
@@ -155,7 +155,7 @@
                         </label>
                     </div>
 
-                    <div class="mt-6 border-t border-b py-2">
+                    {{-- <div class="mt-6 border-t border-b py-2">
                         <div class="flex items-center justify-between">
                             <p class="text-sm font-medium text-gray-900">Harga Media</p>
                             <p class="font-semibold text-gray-900">20.000</p>
@@ -164,10 +164,14 @@
                             <p class="text-sm font-medium text-gray-900">Desain</p>
                             <p class="font-semibold text-gray-900">15.000</p>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="mt-6 flex items-center justify-between">
-                        <p class="text-sm font-medium text-gray-900">Total</p>
-                        <p class="text-2xl font-semibold text-gray-900"></p>
+                        <p  class="text-sm font-medium text-gray-900">Total</p>
+                        <p id="totalPrice" class="text-2xl font-semibold text-gray-900">Rp. {{ number_format($product->harga, 0, ',', '.') }}</p>
+                        <input type="hidden" id="totalPriceHidden" name="totalPrice" value="">
+
+
+
                     </div>
                 </div>
                 <button type="submit"
@@ -179,31 +183,46 @@
 
 
     <script>
-        const decrementButtons = document.querySelectorAll('.decrement');
-        const incrementButtons = document.querySelectorAll('.increment');
-
-        decrementButtons.forEach((button) => {
-            button.addEventListener('click', function (event) {
-                updateCounter(event.target, -1);
-            });
-        });
-
-        incrementButtons.forEach((button) => {
-            button.addEventListener('click', function (event) {
-                updateCounter(event.target, 1);
-            });
-        });
-
-        function updateCounter(clickedButton, change) {
-            const counterElement = clickedButton.parentElement.querySelector('.counter');
-            let currentValue = parseInt(counterElement.innerText);
-            currentValue += change;
-            if (currentValue < 1) {
-                currentValue = 1;
-            }
-            counterElement.innerText = currentValue;
+        // Fungsi untuk menghitung total harga
+        function calculateTotalPrice() {
+            const pricePerItem = {{ $product->harga }}; // Harga per item dari PHP
+            const qyt = parseInt(document.querySelector('input[name="qyt"]').value) || 0; // Ambil nilai QYT
+    
+            const totalPrice = pricePerItem * qyt; // Hitung total harga
+    
+            // Ubah tampilan total harga dalam format mata uang Rupiah
+            
+            document.getElementById('totalPriceHidden').value = totalPrice; 
+            document.getElementById('totalPrice').textContent = `Rp. ${new Intl.NumberFormat('id-ID').format(totalPrice)}`;
         }
+    
 
+
+        // Event listener untuk menangkap perubahan pada input QYT
+        document.querySelector('input[name="qyt"]').addEventListener('input', calculateTotalPrice);
+        // Fungsi untuk mengambil nilai QYT dan total harga, lalu kirim ke server
+        function sendCheckoutData() {
+            const qyt = parseInt(document.getElementById('qytInput').value) || 0; // Ambil nilai QYT
+            const totalPrice = parseFloat(document.getElementById('totalPrice').textContent.replace('Rp. ', '').replace('.', '').replace(',', '.')) || 0; // Ambil nilai total harga
+    
+            // Kirim data ke server dengan menggunakan AJAX
+            fetch(`/checkout/${{ $product->id_product }}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ qyt: qyt, total: totalPrice })
+            })
+            .then(response => {
+                // Lakukan sesuatu setelah menerima respons dari server
+                console.log('Data terkirim ke server.');
+            })
+            .catch(error => console.error('Terjadi kesalahan:', error));
+        }
+    
+        // Panggil fungsi untuk mengirimkan data saat halaman dimuat
+        sendCheckoutData();
     </script>
 </body>
 

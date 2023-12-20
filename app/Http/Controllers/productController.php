@@ -148,4 +148,20 @@ class productController extends Controller
         $marketData = productModel::orderby('nama_product', 'asc')->paginate(10);
         return view('market')->with('marketData', $marketData);
     }
+
+    public function showPayment($id_product)
+    {
+        $product = productModel::find($id_product);
+
+        // Pastikan produk ditemukan
+        if ($product) {
+            // Kirim data produk ke tampilan payment
+            return view('payment', ['product' => $product]);
+        }
+
+        // Jika produk tidak ditemukan, Anda dapat menangani ini di sini, seperti menampilkan pesan kesalahan atau mengarahkan pengguna ke halaman lain
+        return "Produk dengan ID $id_product tidak ditemukan.";
+    }
+
+   
 }

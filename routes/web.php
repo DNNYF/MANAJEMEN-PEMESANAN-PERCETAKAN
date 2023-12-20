@@ -58,8 +58,12 @@ Route::get('/konfirmasi', function () {
     return view('konfirmasipesanan');
 });
 
-Route::get('/payment',[OrderController::class, 'index']);
-Route::post('/checkout',[OrderController::class, 'checkout']);
+// Route::get('/payment',[OrderController::class, 'index']);
+Route::post('/payment/{id_product}', [productController::class, 'showPayment']);
+
+Route::post('checkout/', [OrderController::class, 'checkout']);
+
+
 Route::resource('product', productController::class);
 Route::get('/', [ProductController::class, 'market'])->name('market');
 Route::get('/login',[logincontroller::class,'index']);
