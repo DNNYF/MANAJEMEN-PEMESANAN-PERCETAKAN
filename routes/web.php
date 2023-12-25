@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\logincontroller;
 use App\Http\Controllers\Registercontroller;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\daftarpesanan;
 use App\Http\Controllers\tambahadmin;
 use App\Models\adminModel;
 use Illuminate\Support\Facades\Route;
@@ -34,18 +35,16 @@ Route::get('/pemesanan', function () {
     return view('pemesanan');
 });
 
-Route::get('/', function () {
-    return view('market');
-});
 Route::get('/register', function () {
     return view('register');
 });
 Route::get('/chat', function () {
     return view('chat');
 });
-Route::get('/daftarpesanan', function () {
-    return view('daftarpesanan');
-});
+
+Route::get('/daftarpesanan',[daftarpesanan::class,'index']);
+Route::post('/daftarpesanan/update-status/{id}', [daftarpesanan::class,'updateStatus']);
+
 Route::get('/riwayatpemesanan', function () {
     return view('riwayatpemesanan');
 });
@@ -61,14 +60,20 @@ Route::get('/konfirmasi', function () {
 });
 
 
-Route::resource('product', productController::class);
 Route::get('/login',[logincontroller::class,'index']);
 Route::get('/register',[Registercontroller::class,'index']);
 Route::post('/login/login',[logincontroller::class,'login']);
 
-Route::resource('tambahadmin', tambahadmin::class);
 Auth::routes();
+Route::group(['middleware' => 'user'], function () {
+    Route::get('/home', function () {
+        return redirect('/');
+    });
+    Route::get('/', function () {
+        return view('market');
+    });
+});
 
-Route::get('/home', function () {
-    return redirect('/');
+Route::group(['middleware' => 'admin'], function () {
+    Route::resource('product', productController::class);
 });
