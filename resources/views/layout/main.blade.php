@@ -9,7 +9,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/icon.png') }}" />
     {{-- <link rel="stylesheet" href="{{ asset('dist/css/lightbox.css') }}"> --}}
-    <title>Wibawa Printing | @yield('title')</title>
+    @hasSection('title')
+    <?php $title = trim($__env->yieldContent('title')); ?>
+    <title>Wibawa Printing | {{ $title }}</title>
+    @else
+    <title>Wibawa Printing</title>
+    @endif
 </head>
 <body>
         @yield('main_content')

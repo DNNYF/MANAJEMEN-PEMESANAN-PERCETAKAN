@@ -137,12 +137,31 @@ class productController extends Controller
         return redirect()->route('product.index')->with('success', 'Data Produk berhasil diupdate');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         productModel::where('id_product', $id)->delete();
         return redirect()->route('product.index')->with('success', 'Sukses Menghapus Data');
     }
+
+    public function market()
+    {
+        $marketData = productModel::orderby('nama_product', 'asc')->paginate(10);
+        return view('market')->with('marketData', $marketData);
+    }
+
+    public function showPayment($id_product)
+    {
+        $product = productModel::find($id_product);
+
+        // Pastikan produk ditemukan
+        if ($product) {
+            // Kirim data produk ke tampilan payment
+            return view('payment', ['product' => $product]);
+        }
+
+        // Jika produk tidak ditemukan, Anda dapat menangani ini di sini, seperti menampilkan pesan kesalahan atau mengarahkan pengguna ke halaman lain
+        return "Produk dengan ID $id_product tidak ditemukan.";
+    }
+
+   
 }

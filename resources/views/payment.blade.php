@@ -49,80 +49,79 @@
         </div>
     </div>
 
+    <form action="{{ url('/checkout') }}" method="POST">
+        @csrf
     <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
-        <div class="px-4 pt-8">
-            <p class="text-xl font-medium">Ringkasan Pemesanan</p>
-            <p class="text-gray-400">Periksa Jumlah Pesanan Anda.</p>
-            <li class="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
-                <div class="shrink-0">
-                    <img class="h-24 w-24 max-w-full rounded-lg object-cover"
-                        src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//83/MTA-4622410/jing-s_vardera_-_mug_-_gelas_kopi_-_gelas_-_putih_full01_fxacdnho.jpg"
-                        alt="" />
-                </div>
-                <div class="relative flex flex-1 flex-col justify-between">
-                    <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
-                        <div class="pr-8 sm:pr-5">
-                            <p class="text-base font-semibold text-gray-900">Desain Gelas</p>
-                            <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">Rp. 15.000</p>
-                        </div>
-                        <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
-                            <div class="sm:order-1">
-                                <div class="mx-auto flex h-8 items-stretch text-gray-600">
-                                    <button
-                                        class="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white decrement">-</button>
-                                    <div
-                                        class="flex w-full items-center justify-center bg-gray-100 px-4 text-xs uppercase transition counter">
-                                        1</div>
-                                    <button
-                                        class="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white increment">+</button>
+            <div class="px-4 pt-8">
+                <p class="text-xl font-medium">Ringkasan Pemesanan</p>
+                <p class="text-gray-400">Periksa Jumlah Pesanan Anda.</p>
+                <li class="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
+                    <div class="shrink-0">
+                        <img class="h-24 w-24 max-w-full rounded-lg object-cover"
+                            src="{{ Storage::url('public/imageApp/' . $product->foto) }}"
+                            alt="" />
+                    </div>
+                    <div class="relative flex flex-1 flex-col justify-between">
+                        <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
+                            <div class="pr-8 sm:pr-5">
+                                <p class="text-base font-semibold text-gray-900">{{ $product->nama_product }}</p>
+                                <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">Rp. {{ number_format($product->harga, 0, ',', '.') }} / Item   </p>
+                            </div>
+                            <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
+                                <div class="sm:order-1">
+                                    <div class="mx-auto flex h-8 items-stretch text-gray-600">
+                                        <input id="qytInput" type="number" name="qyt"
+                                            class="border border-gray-500 rounded w-full text-center text-gray-900 justify-center bg-gray-100  text-xs uppercase "
+                                            required min="1" placeholder="QYT" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            <div class="border-2 border-gray-900 rounded px-8 py-8 m-[20] text-white ">
-                <p class="py-2 text-xl font-medium text-gray-900">Foto Mentahan</p>
-                <div class="bg-gray-600 rounded-md px-2 py-2">
-                    <label class=" block">
-                        <span class="sr-only">Choose profile photo</span>
-                        <input type="file" class="block w-full text-sm text-gray-100
-                            file:me-4 file:py-2 file:px-4
-                            file:rounded-lg file:border-0
-                            file:text-sm file:font-semibold
-                            file:bg-blue-600 file:text-white
-                            hover:file:bg-blue-700
-                            file:disabled:opacity-50 file:disabled:pointer-events-none
-                            dark:file:bg-blue-500
-                            dark:hover:file:bg-blue-400
-                            " required>
-                </div>
-                </label>
-                <p class="py-2 mt-5 text-xl font-medium text-gray-900">Foto Hasil Desain</p>
-                <div class="bg-gray-600 rounded-md px-2 py-2">
-                    <label class=" block">
-                        <span class="sr-only">Choose profile photo</span>
-                        <input type="file" class="block w-full text-sm text-gray-100
-                            file:me-4 file:py-2 file:px-4
-                            file:rounded-lg file:border-0
-                            file:text-sm file:font-semibold
-                            file:bg-blue-600 file:text-white
-                            hover:file:bg-blue-700
-                            file:disabled:opacity-50 file:disabled:pointer-events-none
-                            dark:file:bg-blue-500
-                            dark:hover:file:bg-blue-400
-                            " required>
-                </div>
-                </label>
-            </div>
-        </div>
+                </li>
 
-        <div class="m-[20] bg-gray-50 px-4 pt-8 lg:mt-0">
-            <p class="text-xl font-medium">Detail Pembayaran</p>
-            <p class="text-gray-400">Lengkapi Pembayaran Anda.</p>
-            <div class="">
-                <p class="mt-8 text-lg font-medium">Metode Pembayaran</p>
-                <form class="mt-5 grid gap-6">
+                <div class="border-2 border-gray-400 rounded px-8 py-8 m-[20] text-white ">
+                    <p class="py-2 text-xl font-medium text-gray-900">Foto Mentahan</p>
+                    <div class="bg-gray-600 rounded-md px-2 py-2">
+                        <label class=" block">
+                            <span class="sr-only">Choose profile photo</span>
+                            <input type="file" name="foto_mentah" class="block w-full text-sm text-gray-100
+                            file:me-4 file:py-2 file:px-4
+                            file:rounded-lg file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-blue-600 file:text-white
+                            hover:file:bg-blue-700
+                            file:disabled:opacity-50 file:disabled:pointer-events-none
+                            dark:file:bg-blue-500
+                            dark:hover:file:bg-blue-400
+                            " required>
+                    </div>
+                    </label>
+
+                    <p class="py-2 mt-5 text-xl font-medium text-gray-900">Foto Hasil Desain</p>
+                    <div class="bg-gray-600 rounded-md px-2 py-2">
+                        <label class=" block">
+                            <span class="sr-only">Choose profile photo</span>
+                            <input type="file" name="foto_desain" class="block w-full text-sm text-gray-100
+                            file:me-4 file:py-2 file:px-4
+                            file:rounded-lg file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-blue-600 file:text-white
+                            hover:file:bg-blue-700
+                            file:disabled:opacity-50 file:disabled:pointer-events-none
+                            dark:file:bg-blue-500
+                            dark:hover:file:bg-blue-400
+                            " required>
+                    </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="m-[20] bg-gray-50 px-4 pt-8 lg:mt-0">
+                <p class="text-xl font-medium">Detail Pembayaran</p>
+                <p class="text-gray-400">Lengkapi Pembayaran Anda.</p>
+                <div class="">
+                    <p class="mt-8 text-lg font-medium">Metode Pembayaran</p>
                     <div class="relative">
                         <input class="peer hidden" id="radio_1" type="radio" name="radio" checked />
                         <span
@@ -139,7 +138,7 @@
                             </div>
                         </label>
                     </div>
-                    <div class="relative">
+                    <div class="relative mt-1">
                         <input class="peer hidden" id="radio_2" type="radio" name="radio" checked />
                         <span
                             class="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
@@ -155,53 +154,75 @@
                             </div>
                         </label>
                     </div>
-                </form>
-                <div class="mt-6 border-t border-b py-2">
-                    <div class="flex items-center justify-between">
-                        <p class="text-sm font-medium text-gray-900">Harga Media</p>
-                        <p class="font-semibold text-gray-900">20.000</p>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <p class="text-sm font-medium text-gray-900">Desain</p>
-                        <p class="font-semibold text-gray-900">15.000</p>
+
+                    {{-- <div class="mt-6 border-t border-b py-2">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium text-gray-900">Harga Media</p>
+                            <p class="font-semibold text-gray-900">20.000</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium text-gray-900">Desain</p>
+                            <p class="font-semibold text-gray-900">15.000</p>
+                        </div>
+                    </div> --}}
+                    <div class="mt-6 flex items-center justify-between">
+                        <p  class="text-sm font-medium text-gray-900">Total</p>
+                        <p id="totalPrice" class="text-2xl font-semibold text-gray-900">Rp. {{ number_format($product->harga, 0, ',', '.') }}</p>
+                        <input type="hidden" id="totalPriceHidden" name="totalPrice" value="">
+
+
+
                     </div>
                 </div>
-                <div class="mt-6 flex items-center justify-between">
-                    <p class="text-sm font-medium text-gray-900">Total</p>
-                    <p class="text-2xl font-semibold text-gray-900"></p>
-                </div>
-            </div>
-            <a href="/pesananClient"><button
+                <button type="submit"
                     class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place
-                    Order</button></a>
-        </div>
+                    Order</button>
+        </form>
     </div>
+    </div>
+
+
     <script>
-        const decrementButtons = document.querySelectorAll('.decrement');
-        const incrementButtons = document.querySelectorAll('.increment');
-
-        decrementButtons.forEach((button) => {
-            button.addEventListener('click', function (event) {
-                updateCounter(event.target, -1);
-            });
-        });
-
-        incrementButtons.forEach((button) => {
-            button.addEventListener('click', function (event) {
-                updateCounter(event.target, 1);
-            });
-        });
-
-        function updateCounter(clickedButton, change) {
-            const counterElement = clickedButton.parentElement.querySelector('.counter');
-            let currentValue = parseInt(counterElement.innerText);
-            currentValue += change;
-            if (currentValue < 1) {
-                currentValue = 1;
-            }
-            counterElement.innerText = currentValue;
+        // Fungsi untuk menghitung total harga
+        function calculateTotalPrice() {
+            const pricePerItem = {{ $product->harga }}; // Harga per item dari PHP
+            const qyt = parseInt(document.querySelector('input[name="qyt"]').value) || 0; // Ambil nilai QYT
+    
+            const totalPrice = pricePerItem * qyt; // Hitung total harga
+    
+            // Ubah tampilan total harga dalam format mata uang Rupiah
+            
+            document.getElementById('totalPriceHidden').value = totalPrice; 
+            document.getElementById('totalPrice').textContent = `Rp. ${new Intl.NumberFormat('id-ID').format(totalPrice)}`;
         }
+    
 
+
+        // Event listener untuk menangkap perubahan pada input QYT
+        document.querySelector('input[name="qyt"]').addEventListener('input', calculateTotalPrice);
+        // Fungsi untuk mengambil nilai QYT dan total harga, lalu kirim ke server
+        function sendCheckoutData() {
+            const qyt = parseInt(document.getElementById('qytInput').value) || 0; // Ambil nilai QYT
+            const totalPrice = parseFloat(document.getElementById('totalPrice').textContent.replace('Rp. ', '').replace('.', '').replace(',', '.')) || 0; // Ambil nilai total harga
+    
+            // Kirim data ke server dengan menggunakan AJAX
+            fetch(`/checkout/${{ $product->id_product }}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ qyt: qyt, total: totalPrice })
+            })
+            .then(response => {
+                // Lakukan sesuatu setelah menerima respons dari server
+                console.log('Data terkirim ke server.');
+            })
+            .catch(error => console.error('Terjadi kesalahan:', error));
+        }
+    
+        // Panggil fungsi untuk mengirimkan data saat halaman dimuat
+        sendCheckoutData();
     </script>
 </body>
 
